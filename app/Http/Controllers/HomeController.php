@@ -11,8 +11,10 @@ class HomeController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['client', 'manager']);
+
         return view('home');
     }
 }
