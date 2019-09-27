@@ -14,6 +14,9 @@ const app = new Vue({
         ...mapState('user', {
             'user': state => state.user
         }),
+        ...mapState('question', {
+            'questions': state => state.questions
+        }),
         ...mapGetters('user', [
             'isManager',
             'isClient'
@@ -31,7 +34,7 @@ const app = new Vue({
         ])
     },
     created(){
-        this.setUser(window.user)
-        this.getQuestions()
+        this.setUser(window.user);
+        this.getQuestions(this.isManager)
     }
 });
