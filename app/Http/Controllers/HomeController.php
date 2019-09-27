@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,6 +16,8 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['client', 'manager']);
 
-        return view('home');
+        $user = new UserResource($request->user());
+
+        return view('dashboard', compact('user'));
     }
 }
