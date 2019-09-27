@@ -1,6 +1,7 @@
 export default {
     questions: [],
     newQuestion: {},
+    newAnswer: {},
     template: {
         'message': null,
         'title': null,

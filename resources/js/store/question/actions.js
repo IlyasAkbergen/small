@@ -32,3 +32,23 @@ export const deleteQuestion = ({commit, state}, index) => {
             commit('removeQuestion', index)
         })
 }
+
+export const saveNewAnswer = ({commit, state}, question_index) => {
+    axios.post('/answers', {'answer': state.newAnswer})
+        .then((res) => {
+            let answer = res.data.answer
+            commit('addAnswer', [
+                answer,
+                question_index
+            ])
+            state.newAnswer = {}
+        })
+}
+
+export const deleteAnswer = ({commit, state}, payload) => {
+    // payload[0] - questionIndex, payload[1] - answerIndex payload[2] - answerId
+    axios.delete(`/answers/${payload[2]}`)
+        .then(() => {
+            commit('removeAnswer', [payload[0], payload[1]])
+        })
+}

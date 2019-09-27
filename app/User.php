@@ -29,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function questions()
     {
-        return $this->hasMany(Question::class)->with(['answers']);
+        return $this->hasMany(Question::class)->with(['answers', 'user']);
     }
 
     public function authorizeRoles($roles)

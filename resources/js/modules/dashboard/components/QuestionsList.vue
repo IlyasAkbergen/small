@@ -9,6 +9,7 @@
                               name="list" key="list">
                 <question
                     v-for="(question, index) in questions"
+                    :index="index"
                     :question="question"
                     @delete="deleteQuestion(index)"
                     :key="`question${index}`">

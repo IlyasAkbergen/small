@@ -15,7 +15,7 @@ class QuestionController extends Controller
     public function index()
     {
         return response()->json([
-            'questions' => Question::with(['answers'])->get(),
+            'questions' => Question::with(['answers', 'user'])->get(),
         ]);
     }
 

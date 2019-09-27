@@ -17,8 +17,9 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['client', 'manager']);
 
         $user = new UserResource($request->user());
-        $allowAddQuestion = true;
-        // todo реализвать условие
+
+        $allowAddQuestion = time() - strtotime($request->user()->questions->last()->created_at) > 24*60*60;
+
         return view('dashboard', compact('user', 'allowAddQuestion'));
     }
 }
