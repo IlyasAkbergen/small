@@ -15,7 +15,8 @@ const app = new Vue({
             'user': state => state.user
         }),
         ...mapState('question', {
-            'questions': state => state.questions
+            'questions': state => state.questions,
+            'loading': state => state.loading
         }),
         ...mapGetters('user', [
             'isManager',

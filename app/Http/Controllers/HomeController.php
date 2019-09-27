@@ -17,7 +17,8 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['client', 'manager']);
 
         $user = new UserResource($request->user());
-
-        return view('dashboard', compact('user'));
+        $allowAddQuestion = true;
+        // todo реализвать условие
+        return view('dashboard', compact('user', 'allowAddQuestion'));
     }
 }

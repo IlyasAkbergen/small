@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('head')
     <script>
-        window.user = <?php echo json_encode($user) ?>
+        window.user = <?php echo json_encode($user) ?>;
+        window.user.allow_add_question = <?php echo json_encode($allowAddQuestion) ?>
     </script>
     <style>
         .list-enter-active,
@@ -44,7 +45,13 @@
     <div class="row justify-content-center" id="home">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">@{{ dashboardHeader }}</div>
+                <div class="card-header">
+                    @{{ dashboardHeader }}
+                    <button class="btn btn-sm btn-primary float-right"
+                                        key="refreshBtn"
+                                        :disabled="loading"
+                                        @click="getQuestions">Обновить</button>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
