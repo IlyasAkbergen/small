@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
+use App\Helper;
 use App\Question;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class QuestionController extends Controller
     public function index()
     {
         return response()->json([
-            'questions' => Question::with(['answers', 'user'])->get(),
+            'questions' => Question::with(['answers', 'user', 'attachments'])->get(),
         ]);
     }
 
@@ -37,12 +39,30 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $formData = [];
+        foreach ($request->all() as $key => $item){
+            if($key == '_token' || $key == 'ru'){
+                continue;
+            }
+            $formData[$key] = $item;
+        }
+
         $question = new Question();
-        $question->fill($request->question);
+        $question->fill($formData);
         $question->save();
 
+        $attachment = new Attachment();
+        $filename = $formData['file']->getBasename();
+        $extension = $formData['file']->extension();
+
+        $path = Helper::storeAttachement('public/attachments', $formData['file'], $filename.'.'.$extension);
+        $attachment->filename = $filename;
+        $attachment->path = $path;
+        $attachment->question_id = $question->id;
+        $attachment->save();
+
         return response()->json([
-            'question' => $question->with(['answers', 'user'])->first()
+            'question' => $question->with(['answers', 'user', 'attachments'])->first()
         ]);
     }
 

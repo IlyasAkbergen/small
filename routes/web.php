@@ -1,7 +1,10 @@
 <?php
 
 
+use App\Attachment;
+use App\Helper;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 Auth::routes(['verify' => true]);
 
@@ -18,4 +21,9 @@ Route::get('/client-questions', function() {
     return response()->json([
         'questions' => Auth::user()->questions,
     ]);
+});
+
+Route::get('/attachment/{id}', function ($id) {
+    $attachment = Attachment::findOrFail($id);
+    return Storage::download($attachment->path);
 });

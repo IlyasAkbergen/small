@@ -13,7 +13,16 @@ export const getQuestions = ({ commit, state }, isManager) => {
 };
 
 export const saveNewQuestion = ({ commit, state }) => {
-    axios.post('/questions', {'question': state.newQuestion})
+    let formData = new FormData();
+    for (let p in state.newQuestion)
+        formData.append(p, state.newQuestion[p])
+    axios.post('/questions',
+        formData,
+        {
+            headers: {
+                'Content-type': 'multipart/form-data'
+            }
+        })
         .then((res) => {
             commit('addQuestion', res.data.question)
             commit('clearNewQuestion')

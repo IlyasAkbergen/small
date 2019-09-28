@@ -13,6 +13,12 @@
                 </div>
                 <div class="card-body">
                     <span>{{question.message}}</span>
+                    <ul class="mt-2 bg-light" v-if="question.attachments.length > 0">
+                        <strong>Прикрепления</strong>
+                        <li v-for="file in question.attachments">
+                            <a :href="'attachment/' + file.id" target="_blank">{{file.filename}}</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="card-footer">
                     <div v-show="!showNewAnswerForm">

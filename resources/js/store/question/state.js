@@ -5,7 +5,8 @@ export default {
     template: {
         'message': null,
         'title': null,
-        'user_id': null
+        'user_id': null,
+        'file': null
     },
     loading: false,
 }

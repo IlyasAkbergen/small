@@ -20,6 +20,13 @@
 
                 <p class="text-danger text-small">{{ errors.first('message') }}</p>
             </div>
+            <div class="form-group row">
+                <label for="file">Прикрепление</label>
+                <input id="file" class="form-control-file"
+                       ref="file" @change="fileSelected()"
+                       type="file"
+                       name="file"/>
+            </div>
             <div class="form-group">
                 <div class="col-md-10 offset-md-2">
                     <button class="btn btn-small btn-primary float-left"
@@ -53,6 +60,9 @@
                             this.$emit('submit')
                         }
                     })
+            },
+            fileSelected(){
+                this.question.file = this.$refs.file.files[0]
             }
         }
     }
