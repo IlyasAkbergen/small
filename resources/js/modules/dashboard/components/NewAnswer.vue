@@ -6,7 +6,10 @@
                     <label for="message">Ответ</label>
 
                     <textarea id="message" class="form-control"
+                              v-validate="'required'" data-vv-as="сообщение"
                               v-model="answer.message" name="message"/>
+
+                    <p class="text-small text-danger">{{ errors.first('message') }}</p>
 
                 </div>
                 <div class="form-group">
@@ -47,10 +50,15 @@
                 'saveNewAnswer'
             ]),
             submit(){
-                this.answer.user_id  = this.user.id;
-                this.answer.question_id = this.question.id;
-                this.saveNewAnswer(this.index)
-                this.$emit('submit')
+                this.$validator.validateAll()
+                    .then((result) => {
+                        if (result) {
+                            this.answer.user_id = this.user.id;
+                            this.answer.question_id = this.question.id;
+                            this.saveNewAnswer(this.index)
+                            this.$emit('submit')
+                        }
+                    })
             },
             cancel(){
 

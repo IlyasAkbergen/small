@@ -42,7 +42,7 @@ class QuestionController extends Controller
         $question->save();
 
         return response()->json([
-            'id' => $question->id
+            'question' => $question->with(['answers', 'user'])->first()
         ]);
     }
 

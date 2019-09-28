@@ -15,8 +15,7 @@ export const getQuestions = ({ commit, state }, isManager) => {
 export const saveNewQuestion = ({ commit, state }) => {
     axios.post('/questions', {'question': state.newQuestion})
         .then((res) => {
-            state.newQuestion.id = res.data.id
-            commit('addQuestion', state.newQuestion)
+            commit('addQuestion', res.data.question)
             commit('clearNewQuestion')
         })
 

@@ -18,7 +18,9 @@ class HomeController extends Controller
 
         $user = new UserResource($request->user());
 
-        $allowAddQuestion = time() - strtotime($request->user()->questions->last()->created_at) > 24*60*60;
+        $allowAddQuestion = $request->user()->questions->last() !== null ?
+            time() - strtotime($request->user()->questions->last()->created_at) > 24*60*60
+            : true;
 
         return view('dashboard', compact('user', 'allowAddQuestion'));
     }
