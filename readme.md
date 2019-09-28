@@ -1,22 +1,22 @@
 
 1. клонировать проект с git
-   git clone https://github.com/IlyasAkbergen/small.git
+   <br/><i>git clone https://github.com/IlyasAkbergen/small.git</i>
     
 2. скачать необходимые модули для vue js
-    npm install
+   <br/><i>npm install</i>
     
 3. скомпилировать указанные в webpack.mix.js файлы
-    npm run dev
+    <br/><i>npm run dev</i>
     
 4. запустить сервер 
-    php artisan serve или поднять на homestead, инструкция <a href="https://laravel.com/docs/5.8/homestead">здесь</a>
+   <br/><i>php artisan serve или поднять на homestead, инструкция <a href="https://laravel.com/docs/5.8/homestead">здесь</a></i>
 
 5. переимновать файл .env.example в .env, настроить в нем подключение к базе данных. Также настроить почту, она понадобится для отправки письма для подтверждения регистрации.
     
 6. создать базу данных.
 
 7. запстить миграции и сидер
-    php artisan migrate:fresh --seed
+    <br/><i>php artisan migrate:fresh --seed</i>
 
 <hr/>  
 
