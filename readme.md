@@ -9,7 +9,7 @@
     <br/><i>npm run dev</i>
     
 4. запустить сервер 
-   <br/><i>php artisan serve или поднять на homestead, инструкция <a href="https://laravel.com/docs/5.8/homestead">здесь</a></i>
+   <br/><i>php artisan serve или поднять на homestead, инструкция <a target="blank" href="https://laravel.com/docs/5.8/homestead">здесь</a></i>
 
 5. переимновать файл .env.example в .env, настроить в нем подключение к базе данных. Также настроить почту, она понадобится для отправки письма для подтверждения регистрации.
     
